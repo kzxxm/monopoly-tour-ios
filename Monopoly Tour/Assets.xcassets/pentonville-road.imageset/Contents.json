@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "pentonville-road.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
