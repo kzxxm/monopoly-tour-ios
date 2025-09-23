@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct FilterSheetView: View {
-    @Binding var isShowingFilterSheet: Bool
+    @Environment(\.dismiss) var dismiss
+    @ObservedObject var filters: LocationFilters
     
     var body: some View {
             VStack(alignment: .leading) {
@@ -22,7 +23,7 @@ struct FilterSheetView: View {
                     Spacer()
                     
                     Button {
-                        isShowingFilterSheet.toggle()
+                        dismiss()
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
@@ -46,7 +47,18 @@ struct FilterSheetView: View {
                             .padding(.top, 12)
                         
                         ForEach(colorSets) { set in
-                            SelectionListItem(text: set.name)
+                            SelectionListItem(isSelected: Binding(
+                                get: {
+                                    filters.selectedColorSets.contains(set.id)
+                                },
+                                set: { newValue in
+                                    if newValue {
+                                        filters.selectedColorSets.insert(set.id)
+                                    } else {
+                                        filters.selectedColorSets.remove(set.id)
+                                    }
+                                }
+                            ), text: set.name)
                         }
                         
                         
@@ -54,8 +66,14 @@ struct FilterSheetView: View {
                             .font(.headline)
                             .padding(.top, 32)
                         
-                        SelectionListItem(text: "Visited")
-                        SelectionListItem(text: "Not visited")
+                        SelectionListItem(
+                            isSelected: $filters.showVisited,
+                            text: "Visited"
+                        )
+                        SelectionListItem(
+                            isSelected: $filters.showUnvisited,
+                            text: "Not visited"
+                        )
                         
                         
                     }
@@ -74,5 +92,5 @@ struct FilterSheetView: View {
 }
 
 #Preview {
-    FilterSheetView(isShowingFilterSheet: .constant(true))
+    FilterSheetView(filters: LocationFilters())
 }

@@ -10,13 +10,15 @@ import MapKit
 
 struct MapView: View {
     let viewModel = MapViewModel(locations: locations)
+    
+    @StateObject var filter = LocationFilters()
     @State private var isShowingFilterSheet: Bool = false
     
     var body: some View {
         NavigationStack {
             ZStack(alignment: .topTrailing) {
                 Map {
-                    ForEach(locations) { location in
+                    ForEach(filter.filteredLocations()) { location in
                         Annotation(location.name, coordinate: location.position) {
                             MapPin(location: location)
                         }
@@ -36,7 +38,7 @@ struct MapView: View {
                 }
             }
             .sheet(isPresented: $isShowingFilterSheet) {
-                FilterSheetView(isShowingFilterSheet: $isShowingFilterSheet)
+                FilterSheetView(filters: filter)
             }
         }
     }

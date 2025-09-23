@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectionListItem: View {
-    @State private var isSelected = false
+    @Binding var isSelected: Bool
     let text: String
     
     var body: some View {
@@ -32,5 +32,6 @@ struct SelectionListItem: View {
 }
 
 #Preview {
-    SelectionListItem(text: "Placeholder")
+    SelectionListItem(isSelected: .constant(false), text: "Placeholder")
+    SelectionListItem(isSelected: .constant(true), text: "Placeholder")
 }
