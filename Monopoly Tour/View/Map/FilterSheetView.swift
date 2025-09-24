@@ -26,37 +26,26 @@ struct FilterSheetView: View {
                     
                     GlassEffectContainer {
                         HStack {
-                            Button {
-                                filters.resetFilters()
-                            } label: {
-                                Image(systemName: "arrow.clockwise")
-                                    .foregroundStyle(Color.primary)
-                                    .font(.title2)
-                                    .frame(width: 48, height: 32)
-                                    .padding(8)
-                                
-                            }
-                            .glassEffectUnion(id: "reset", namespace: namespace)
+                            ToolbarButton(
+                                action: filters.resetFilters,
+                                icon: "arrow.clockwise",
+                                id: "reset",
+                                namespace: namespace
+                            )
                             
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .foregroundStyle(Color.primary)
-                                    .font(.title2)
-                                    .frame(width: 48, height: 32)
-                                    .padding(8)
-                            }
-                            .glassEffectUnion(id: "close", namespace: namespace)
+                            ToolbarButton(
+                                action: { dismiss() },
+                                icon: "xmark",
+                                id: "close",
+                                namespace: namespace
+                            )
                         }
                     }
-                    .glassEffect()
-
+                    .glassEffect(.regular.interactive())
                 }
                 .padding(.top, 40)
                 .padding(.horizontal)
 
-                    
                 ScrollView {
                     VStack(alignment: .leading) {
                         Text("Colour Sets")
@@ -79,7 +68,6 @@ struct FilterSheetView: View {
                             ), text: set.name)
                         }
                         
-                        
                         Text("Visited Status")
                             .font(.headline)
                             .padding(.top, 32)
@@ -92,8 +80,6 @@ struct FilterSheetView: View {
                             isSelected: $filters.showUnvisited,
                             text: "Not visited"
                         )
-                        
-                        
                     }
                     .padding(.horizontal)
                     
@@ -106,7 +92,6 @@ struct FilterSheetView: View {
                 }
             }
             .appBackground()
-
         }
     }
 }
