@@ -23,6 +23,12 @@ class LocationFilters: ObservableObject {
         self.showUnvisited = showUnvisited
     }
     
+    func resetFilters() {
+        showVisited = true
+        showUnvisited = true
+        selectedColorSets.removeAll()
+    }
+    
     func filteredLocations() -> [Location] {
         var locationsFiltered = locations
                     

@@ -10,37 +10,55 @@ import SwiftUI
 struct FilterSheetView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var filters: LocationFilters
+    @Namespace private var namespace
     
     var body: some View {
+        NavigationView {
             VStack(alignment: .leading) {
                 // Sheet header
-                HStack {
+                HStack(spacing: 12) {
                     Text("Filter")
+                        .foregroundStyle(Color.primary)
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.primary)
                     
                     Spacer()
                     
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 18, height: 18)
-                            .foregroundStyle(Color.primary)
+                    GlassEffectContainer {
+                        HStack {
+                            Button {
+                                filters.resetFilters()
+                            } label: {
+                                Image(systemName: "arrow.clockwise")
+                                    .foregroundStyle(Color.primary)
+                                    .font(.title2)
+                                    .frame(width: 48, height: 32)
+                                    .padding(8)
+                                
+                            }
+                            .glassEffectUnion(id: "reset", namespace: namespace)
+                            
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .foregroundStyle(Color.primary)
+                                    .font(.title2)
+                                    .frame(width: 48, height: 32)
+                                    .padding(8)
+                            }
+                            .glassEffectUnion(id: "close", namespace: namespace)
+                        }
                     }
+                    .glassEffect()
+
                 }
-                .safeAreaInset(edge: .top) {
-                    Color.clear
-                        .frame(height: 24)
-                }
-                .padding(.horizontal, 24)
-                
+                .padding(.top, 40)
+                .padding(.horizontal)
+
+                    
                 ScrollView {
-                
                     VStack(alignment: .leading) {
-                        
                         Text("Colour Sets")
                             .font(.title3)
                             .fontWeight(.semibold)
@@ -78,16 +96,18 @@ struct FilterSheetView: View {
                         
                     }
                     .padding(.horizontal)
-                
-                Spacer()
+                    
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+                .safeAreaInset(edge: .top) {
+                    Color.clear
+                        .frame(height: 8)
+                }
             }
-            .frame(maxWidth: .infinity)
-            .safeAreaInset(edge: .top) {
-                Color.clear
-                    .frame(height: 8)
-            }
+            .appBackground()
+
         }
-        .appBackground()
     }
 }
 
