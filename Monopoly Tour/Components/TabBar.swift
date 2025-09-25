@@ -52,14 +52,12 @@ enum Tab {
     case home
     case places
     case map
-    case settings
     
     var index: Int {
         switch self {
             case .home: return 0
             case .places: return 1
             case .map: return 2
-            case .settings: return 3
         }
     }
 }
@@ -68,7 +66,6 @@ let tabItems = [
     TabItem(tab: .home, name: "Home", icon: "house"),
     TabItem(tab: .places, name: "Places", icon: "mappin"),
     TabItem(tab: .map, name: "Map", icon: "map"),
-    TabItem(tab: .settings, name: "Settings", icon: "gearshape")
 ]
 
 #Preview {

@@ -8,11 +8,14 @@
 import SwiftUI
 import MapKit
 
-struct MapView: View {
-    let viewModel = MapViewModel(locations: locations)
-    
+struct MapView: View {    
     @StateObject var filter = LocationFilters()
+    @State private var selectedLocation: Location? = nil
+    
+    @State private var isShowingLocationSheet: Bool = false
     @State private var isShowingFilterSheet: Bool = false
+    
+    @Namespace private var namespace
     
     var body: some View {
         NavigationStack {
@@ -20,25 +23,36 @@ struct MapView: View {
                 Map {
                     ForEach(filter.filteredLocations()) { location in
                         Annotation(location.name, coordinate: location.position) {
-                            MapPin(location: location)
+                            Button {
+                                selectedLocation = location
+                                isShowingLocationSheet.toggle()
+                            } label: {
+                                MapPin(location: location)
+                            }
                         }
                     }
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        isShowingFilterSheet.toggle()
-                    } label: {
-                        Image(systemName: "line.3.horizontal.decrease")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
-                    }
+                    ToolbarButton(
+                        action: { isShowingFilterSheet.toggle() },
+                        icon: "line.3.horizontal.decrease",
+                        id: "filter",
+                        namespace: namespace
+                    )
+                    .frame(width: 32, height: 32)
                 }
             }
             .sheet(isPresented: $isShowingFilterSheet) {
                 FilterSheetView(filters: filter)
+            }
+            .sheet(item: $selectedLocation) { location in
+                LocationView(location: location, isSheet: true)
+                    .safeAreaInset(edge: .top) {
+                        Color.clear
+                            .frame(height: 60)
+                    }
             }
         }
     }

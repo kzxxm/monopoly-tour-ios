@@ -38,6 +38,11 @@ struct LocationCard: View {
                     
                     Spacer()
                     
+                    Circle()
+                        .frame(width: 10, height: 10)
+                        .foregroundStyle(location.colorSetId.color)
+                        .padding(.trailing)
+                    
                     Image(systemName: "chevron.right")
                         .foregroundStyle(Color.primary.opacity(0.5))
                         .fontWeight(.ultraLight)

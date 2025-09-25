@@ -52,6 +52,11 @@ extension Color {
         dark: Color(red: 44/255, green: 44/255, blue: 46/255)
     )
     
+    static let componentCardEmphasisedText = dynamicColor(
+        light: Color(red: 74/255, green: 83/255, blue: 103/255),
+        dark: Color.white
+    )
+    
     // Circular Progress Indicator
     static let circularIndicator = dynamicColor(
         light: Color(red: 74/255, green: 83/255, blue: 103/255),

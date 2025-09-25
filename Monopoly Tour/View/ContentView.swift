@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = ColorSetViewModel(locations: locations)
     @State private var selectedTab = Tab.home
+    @State private var previousTab = Tab.home
     
     var body: some View {
         ZStack {
@@ -18,30 +18,36 @@ struct ContentView: View {
             Group {
                 switch selectedTab {
                 case .home:
-                    HomeView(viewModel: viewModel)
+                    HomeView()
                         .transition(
-                            .push(from: .leading)
+                            .move(edge: transitionEdge)
                         )
                 case .places:
-                    Text("Places")
+                    PlacesView()
                         .transition(
-                            .push(from: selectedTab.index > 1 ? .leading : .trailing)
+                            .move(edge: transitionEdge)
                         )
                 case .map:
                     MapView()
                         .transition(
-                            .push(from: selectedTab.index > 2 ? .leading : .trailing)
-                        )
-                case .settings:
-                    Text("Settings")
-                        .transition(
-                            .push(from: .trailing)
+                            .move(edge: transitionEdge)
                         )
                 }
             }
+            .animation(.bouncy, value: transitionEdge)
             
-            TabBar(selectedTab: $selectedTab)
+            TabBar(selectedTab: Binding(
+                get: { selectedTab },
+                set: { newValue in
+                    previousTab = selectedTab
+                    selectedTab = newValue
+                }
+            ))
         }
+    }
+    
+    private var transitionEdge: Edge {
+        selectedTab.index > previousTab.index ? .trailing : .leading
     }
 }
 

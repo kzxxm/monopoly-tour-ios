@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel: ColorSetViewModel
+    @StateObject var viewModel = ColorSetViewModel(locations: locations)
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     
@@ -32,15 +32,21 @@ struct HomeView: View {
                                 .font(.headline)
                                 .padding(.bottom, 3)
                             
-                            Text("\(viewModel.totalVisitedLocations)")
-                                .fontWeight(.heavy)
-                                .foregroundStyle(Color.circularIndicator) +
-                            Text(" locations visted")
+                            HStack(spacing: 0) {
+                                Text("\(viewModel.totalVisitedLocations)")
+                                    .fontWeight(.heavy)
+                                    .foregroundStyle(Color.componentCardEmphasisedText)
+                                
+                                Text(" locations visted")
+                            }
                             
-                            Text("\(viewModel.remainingLocations)")
-                                .fontWeight(.heavy)
-                                .foregroundStyle(Color.circularIndicator) +
-                            Text(" to go")
+                            HStack(spacing: 0) {
+                                Text("\(viewModel.remainingLocations)")
+                                    .fontWeight(.heavy)
+                                    .foregroundStyle(Color.componentCardEmphasisedText)
+                                
+                                Text(" to go")
+                            }
                         }
                         
                         Spacer()
@@ -71,6 +77,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(viewModel: ColorSetViewModel(locations: locations))
+    HomeView()
         .background(Color.appBackground)
 }

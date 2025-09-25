@@ -9,19 +9,39 @@ import MapKit
 import SwiftUI
 
 struct LocationView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var location: Location
+    @Namespace private var namespace
+    
+    let isSheet: Bool
     let viewModel: PositionViewModel
     
-    init(location: Location) {
+    init(location: Location, isSheet: Bool = false) {
         self.location = location
+        self.isSheet = isSheet
         self.viewModel = PositionViewModel(location: location)
     }
         
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text(location.name)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
+            HStack {
+                Text(location.name)
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                if isSheet {
+                    ToolbarButton(
+                        action: { dismiss() },
+                        icon: "xmark",
+                        id: "close",
+                        namespace: namespace
+                    )
+                    .frame(width: 48, height: 48)
+                    .glassEffect(.regular.interactive())
+                }
+            }
             
             ZStack(alignment: .bottomTrailing) {
                 Map(
