@@ -9,13 +9,17 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {    
-    @StateObject var filter = LocationFilters()
+    @StateObject private var filter: LocationFilters
     @State private var selectedLocation: Location? = nil
     
     @State private var isShowingLocationSheet: Bool = false
     @State private var isShowingFilterSheet: Bool = false
     
     @Namespace private var namespace
+    
+    init(repository: LocationRepositoryProtocol = AppDependencies.shared.repository) {
+        _filter = StateObject(wrappedValue: LocationFilters(repository: repository))
+    }
     
     var body: some View {
         NavigationStack {

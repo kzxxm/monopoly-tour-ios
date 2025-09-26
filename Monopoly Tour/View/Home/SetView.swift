@@ -30,7 +30,6 @@ struct SetView: View {
                     Spacer()
                 }
                 
-                
                 // Locations
                 VStack {
                     ForEach(viewModel.locations(for: set), id: \.id) { location in
@@ -53,5 +52,5 @@ struct SetView: View {
 }
 
 #Preview {
-    SetView(set: colorSets[0], viewModel: ColorSetViewModel(locations: locations))
+    SetView(set: colorSets[0], viewModel: ColorSetViewModel())
 }

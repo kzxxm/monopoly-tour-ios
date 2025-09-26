@@ -16,10 +16,10 @@ struct LocationView: View {
     let isSheet: Bool
     let viewModel: PositionViewModel
     
-    init(location: Location, isSheet: Bool = false) {
+    init(location: Location, isSheet: Bool = false, repository: LocationRepositoryProtocol = AppDependencies.shared.repository) {
         self.location = location
         self.isSheet = isSheet
-        self.viewModel = PositionViewModel(location: location)
+        self.viewModel = PositionViewModel(location: location, repository: repository)
     }
         
     var body: some View {
@@ -63,7 +63,7 @@ struct LocationView: View {
             ButtonPrimary(
                 text: location.visited ? "Mark location as unvisited" : "Mark location as visited",
                 action: {
-                    viewModel.toggleVisited(for: location)
+                    viewModel.toggleVisited()
                 }
             )
             
@@ -75,7 +75,9 @@ struct LocationView: View {
 }
 
 #Preview {
-    LocationView(location: locations[0])
+    let location = LocationRepository(storage: LocationStorage()).getLocation(by: .oldKentRoad)!
+    
+    LocationView(location: location)
         .safeAreaInset(edge: .top) {
             Color.clear.frame(height: 52)
         }

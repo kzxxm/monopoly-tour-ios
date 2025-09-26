@@ -10,6 +10,7 @@ import MapKit
 
 class PositionViewModel: ObservableObject {
     @Published var location: Location
+    private let repository: LocationRepositoryProtocol
     
     var region: MKCoordinateRegion {
         MKCoordinateRegion(
@@ -18,8 +19,9 @@ class PositionViewModel: ObservableObject {
         )
     }
     
-    init(location: Location) {
+    init(location: Location, repository: LocationRepositoryProtocol = LocationRepository(storage: LocationStorage())) {
         self.location = location
+        self.repository = repository
     }
     
     func openDirections() {
@@ -30,11 +32,9 @@ class PositionViewModel: ObservableObject {
         ])
     }
     
-    func toggleVisited(for location: Location) {
-        if let index = locations.firstIndex(where: { $0.id == location.id }) {
-            locations[index].toggleVisit()
-            LocationStorage.saveVisitedState(for: location.id, visited: locations[index].visited)
-            objectWillChange.send()
-        }
+    func toggleVisited() {
+        location.toggleVisit()
+        repository.updateLocation(location)
+        objectWillChange.send()
     }
 }

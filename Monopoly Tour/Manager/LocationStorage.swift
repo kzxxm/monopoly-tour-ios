@@ -7,7 +7,21 @@
 
 import Foundation
 
-class LocationStorage {
+class LocationStorage: LocationStorageProtocol {
+    init() {}
+    
+    func saveVisitedState(for locationID: LocationID, visited: Bool) {
+        UserDefaults.standard.set(visited, forKey: locationID.rawValue)
+    }
+    
+    func getVisitedState(for locationID: LocationID, defaultValue: Bool = false) -> Bool {
+        if UserDefaults.standard.object(forKey: locationID.rawValue) == nil {
+            return defaultValue
+        }
+        return UserDefaults.standard.bool(forKey: locationID.rawValue)
+    }
+    
+    // TODO: remove these
     static func saveVisitedState(for locationID: LocationID, visited: Bool) {
         UserDefaults.standard.set(visited, forKey: locationID.rawValue)
     }

@@ -60,10 +60,14 @@ struct LocationCard: View {
 }
 
 #Preview {
+    let location1 = LocationRepository(storage: LocationStorage()).getLocation(by: .oldKentRoad)!
+    let location2 = LocationRepository(storage: LocationStorage()).getLocation(by: .oxfordStreet)!
+    let location3 = LocationRepository(storage: LocationStorage()).getLocation(by: .mayfair)!
+    
     ScrollView {
-        LocationCard(location: locations[0], viewModel: ColorSetViewModel(locations: locations))
-        LocationCard(location: locations[1], viewModel: ColorSetViewModel(locations: locations))
-        LocationCard(location: locations[2], viewModel: ColorSetViewModel(locations: locations))
+        LocationCard(location: location1, viewModel: ColorSetViewModel())
+        LocationCard(location: location2, viewModel: ColorSetViewModel())
+        LocationCard(location: location3, viewModel: ColorSetViewModel())
     }
     .background(.black)
 }

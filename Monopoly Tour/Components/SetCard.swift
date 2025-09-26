@@ -41,8 +41,8 @@ struct SetCard: View {
 }
 
 #Preview {
-    SetCard(viewModel: ColorSetViewModel(locations: locations), set: colorSets[0])
-    SetCard(viewModel: ColorSetViewModel(locations: locations), set: colorSets[1])
-    SetCard(viewModel: ColorSetViewModel(locations: locations), set: colorSets[2])
-    SetCard(viewModel: ColorSetViewModel(locations: locations), set: colorSets[3])
+    SetCard(viewModel: ColorSetViewModel(), set: colorSets[0])
+    SetCard(viewModel: ColorSetViewModel(), set: colorSets[1])
+    SetCard(viewModel: ColorSetViewModel(), set: colorSets[2])
+    SetCard(viewModel: ColorSetViewModel(), set: colorSets[3])
 }

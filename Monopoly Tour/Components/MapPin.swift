@@ -35,8 +35,10 @@ struct MapPin: View {
 }
 
 #Preview {
+    let location = LocationRepository(storage: LocationStorage()).getLocation(by: .oldKentRoad)!
+    
     ZStack {
         Color.appBackground
-        MapPin(location: locations[1])
+        MapPin(location: location)
     }
 }

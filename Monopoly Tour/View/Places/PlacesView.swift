@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct PlacesView: View {
-    let viewModel = ColorSetViewModel(locations: locations)
-    @StateObject var filter = LocationFilters()
+    @StateObject private var viewModel: ColorSetViewModel
+    @StateObject private var filter: LocationFilters
     @State private var isShowingFilterSheet = false
     @Namespace private var namespace
+    
+    init(repository: LocationRepositoryProtocol = AppDependencies.shared.repository) {
+        _viewModel = StateObject(wrappedValue: ColorSetViewModel(repository: repository))
+        _filter = StateObject(wrappedValue: LocationFilters(repository: repository))
+    }
     
     var body: some View {
         NavigationStack {

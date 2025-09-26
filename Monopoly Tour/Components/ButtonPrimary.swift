@@ -16,7 +16,7 @@ struct ButtonPrimary: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.tabBarBackground)
-                    .frame(width: .infinity, height: 50)
+                    .frame(maxWidth: .infinity, maxHeight: 50)
                 
                 Text(text)
                     .foregroundStyle(Color.tabBarIconSelected)

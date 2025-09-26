@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel = ColorSetViewModel(locations: locations)
+    @StateObject var viewModel: ColorSetViewModel
+    
+    init(repository: LocationRepositoryProtocol = AppDependencies.shared.repository) {
+        _viewModel = StateObject(wrappedValue: ColorSetViewModel(repository: repository))
+    }
     
     var body: some View {
         NavigationStack {
