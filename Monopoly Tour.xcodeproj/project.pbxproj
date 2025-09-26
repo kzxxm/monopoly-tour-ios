@@ -27,9 +27,9 @@
 			path = "Monopoly Tour";
 			sourceTree = "<group>";
 		};
-		35DAD4072E75B2AA00E14B6C /* Monopoly TourTests */ = {
+		35DAD4072E75B2AA00E14B6C /* Monopoly Tour Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Monopoly TourTests";
+			path = "Monopoly Tour Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				35DAD3F92E75B2A900E14B6C /* Monopoly Tour */,
-				35DAD4072E75B2AA00E14B6C /* Monopoly TourTests */,
+				35DAD4072E75B2AA00E14B6C /* Monopoly Tour Tests */,
 				35DAD3F82E75B2A900E14B6C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,7 +109,7 @@
 				35DAD4062E75B2AA00E14B6C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				35DAD4072E75B2AA00E14B6C /* Monopoly TourTests */,
+				35DAD4072E75B2AA00E14B6C /* Monopoly Tour Tests */,
 			);
 			name = "Monopoly TourTests";
 			packageProductDependencies = (
@@ -328,7 +328,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7VKU7Y56S7;
+				DEVELOPMENT_TEAM = 4N66KA8D4S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -359,7 +359,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7VKU7Y56S7;
+				DEVELOPMENT_TEAM = 4N66KA8D4S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
