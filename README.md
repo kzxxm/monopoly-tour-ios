@@ -3,7 +3,8 @@
 Monopoly Tour is a SwiftUI, iOS application that gamifies the exploration of the iconic Monopoly board locations throughout London. The app allows a user to track their visited locations, view their completion progress and navigate themselves to real-world locations as seen in the board game.
 
 ## App Preview
-![screen-record](https://github.com/user-attachments/assets/79c135fe-3a3c-4ab4-b6c4-c931809df82e)
+
+![screen-record](https://github.com/user-attachments/assets/835316f0-6707-4f8c-a6bf-2209c0e90ef4)
 
 
 ## 📱 Features
