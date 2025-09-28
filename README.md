@@ -28,10 +28,10 @@ Monopoly Tour is a SwiftUI, iOS application that gamifies the exploration of the
 This project uses `MVVM` and demonstrates **Clean Architecture** principles with a focus on testability and maintainability.
 
 ### Architecture Layers
-`| SwiftUI Views |`  <  Presentation layer
-`| ViewModels    |`  <  Business logic layer
-`| Repository    |`  <  Data access layer
-`| Storage       |`  <  Persistence layer
+`| SwiftUI Views |`  <  Presentation layer  <br>
+`| ViewModels    |`  <  Business logic layer  <br>
+`| Repository    |`  <  Data access layer  <br>
+`| Storage       |`  <  Persistence layer  <br>
 ### Key Patterns
 - **MVVM:**  Clean separation between views and business logic
 - **Repository Pattern:**  Centralised data access with abstract interface
